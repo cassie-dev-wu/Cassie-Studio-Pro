@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassie Digital Studio — Design & AI</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-color: #fbfbfd;
+  --main-text: #1d1d1f;
+  --sub-text: #6e6e73;
+  --accent: #0071e3;
+  --glass: rgba(255, 255, 255, 0.7);
+}
+html { scroll-behavior: smooth; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', sans-serif; background: var(--bg-color); color: var(--main-text); line-height: 1.5; }
+
+/* 导航：毛玻璃效果 */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  height: 52px; background: var(--glass);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  display: flex; align-items: center; justify-content: space-between; padding: 0 5%;
+}
+.logo { font-weight: 600; font-size: 1.2rem; text-decoration: none; color: var(--main-text); }
+.nav-links a { margin-left: 25px; text-decoration: none; color: var(--sub-text); font-size: 0.85rem; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+
+/* 首屏设计 */
+.hero {
+  padding: 150px 5% 100px; text-align: center;
+  background: radial-gradient(circle at 50% 0%, #e8f1fb 0%, var(--bg-color) 70%);
+}
+.hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p { font-size: 1.25rem; color: var(--sub-text); max-width: 600px; margin: 0 auto 40px; }
+
+/* 服务卡片：玻璃质感 */
+.services { padding: 100px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 40px; border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-decoration: none; color: inherit;
+}
+.card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+.card p { color: var(--sub-text); margin-bottom: 20px; }
+.card-link { color: var(--accent); font-weight: 500; font-size: 0.9rem; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Cassie.</a>
+  <div class="nav-links">
+    <a href="#services">服务</a>
+    <a href="mailto:1932966181@qq.com">联系</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="reveal">
+    <h1>让想法<br>通过代码<em>真实存在</em></h1>
+    <p>专注于为个人品牌提供具有设计感的网页开发与 AI 自动化工作流方案。</p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <a href="service-ai-workflow.html" class="card reveal">
+    <h3>🤖 AI 工作流搭建</h3>
+    <p>深度定制 Claude 与 GPT 自动化流程，将你的创作效率提升至原本的 300%。</p>
+    <div class="card-link">深入探索服务 →</div>
+  </a>
+
+  <div class="card reveal">
+    <h3>🌐 品牌站点定制</h3>
+    <p>拒绝模版感，构建符合品牌调性的极简、丝滑的响应式网站。</p>
+    <div class="card-link">正在筹备中...</div>
+  </div>
+</section>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
